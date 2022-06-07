@@ -17,7 +17,7 @@ import { useAuth } from "../hooks/useAuth";
 export const AppBar = ({ pages }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const navigate = useNavigate();
-  const { user, logout } = useAuth();
+  const { user, idToken, logout, login } = useAuth();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -25,7 +25,10 @@ export const AppBar = ({ pages }) => {
 
   const handleCloseNavMenu = (path) => {
     setAnchorElNav(null);
-    if (path) {
+    if (path === '/login') {
+        window.location.href = 'https://localhost:9443/oauth2/authorize?response_type=code&redirect_uri=http://localhost:8080/oauth2client&client_id=2kJ5YyusrTjBhJMPbnCUu0y5FQwa&scope=openid'
+    }
+    if (path && path !== '/login') {
       navigate(path);
     }
   };
@@ -110,6 +113,7 @@ export const AppBar = ({ pages }) => {
                 key={"logout"}
                 onClick={logout}
                 sx={{ my: 2, color: "white", display: "block" }}
+                href={`https://localhost:9443/oidc/logout?id_token=${idToken}&post_logout_redirect_uri=http://localhost:3000`}
               >
                 {"logout"}
               </Button>

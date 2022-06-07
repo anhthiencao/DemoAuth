@@ -15,12 +15,29 @@ export const LoginPage = () => {
   const { login } = useAuth();
 
   const handleSubmit = (event) => {
+    // if (path === '/login') {
+    //   handleLogin(login)
+    //   window.location.href = 'https://localhost:9443/oauth2/authorize?response_type=code&redirect_uri=http://localhost:8080/oauth2client&client_id=2kJ5YyusrTjBhJMPbnCUu0y5FQwa&scope=openid'
+    //   // axios({
+    //   //   method: 'get',
+    //   //   url: 'http://localhost:8080',
+    //   //   // Set the content type header, so that we get the response in JSOn
+    //   // }).then((response) => {
+    //   //   console.log('response', response);
+    //   // }).catch((err) => {
+    //   //   // Do somthing
+    //   //   console.log(err)
+    //   // })
+    // } else {
+    //   setAnchorElNav(null);
+    //   if (path) {
+    //     navigate(path);
+    //   }
+    // }
+
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    login({
-      email: data.get("email"),
-      password: data.get("password")
-    });
+
   };
 
   return (
